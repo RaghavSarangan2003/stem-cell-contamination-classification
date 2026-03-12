@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.idea/
+venv/
+.env/
+.stem_cell_classification_venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Large files / datasets
+data/
+dataset/
+*.zip
+*.tar
+*.gz
+
+# model weights
+*.pth
+*.pt
+
+# logs
+*.log
