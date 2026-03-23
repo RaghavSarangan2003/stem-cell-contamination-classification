@@ -116,10 +116,10 @@ if __name__ == "__main__":
     # Class names (must match training order)
     class_names = ["bacteria", "healthy", "microplasma"]
 
-    # ---------------------------
+
     # CHANGE THIS IMAGE NAME
-    # ---------------------------
-    test_image_name = "D:\stem_cell_classification\Stem_cell_classification\data\images\CNH2_jpg.rf.534345a78ddc4a6d1bee6449e84c3e90.jpg" # <-- replace with real image
+
+    test_image_name = "" # <-- replace with real image
     test_image_path = config.raw_images_path / test_image_name
 
     image, tensor = load_image(test_image_path, device)

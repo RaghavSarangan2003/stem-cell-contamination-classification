@@ -12,9 +12,9 @@ from dataloader import get_dataloaders
 import config
 
 
-# ---------------------------
+
 # Reproducibility
-# ---------------------------
+
 def set_seed(seed=42):
     random.seed(seed)
     np.random.seed(seed)
@@ -22,9 +22,9 @@ def set_seed(seed=42):
     torch.cuda.manual_seed_all(seed)
 
 
-# ---------------------------
+
 # Train / Validate Functions
-# ---------------------------
+
 def train_one_epoch(model, loader, optimizer, criterion, device):
     model.train()
     running_loss = 0.0
@@ -75,9 +75,9 @@ def validate(model, loader, criterion, device):
     return epoch_loss, epoch_acc
 
 
-# ---------------------------
+
 # Plotting
-# ---------------------------
+
 def plot_curves(train_losses, val_losses, train_accs, val_accs, out_path):
     epochs = range(1, len(train_losses) + 1)
 
@@ -106,9 +106,9 @@ def plot_curves(train_losses, val_losses, train_accs, val_accs, out_path):
     plt.show()
 
 
-# ---------------------------
-# Main (Windows-safe)
-# ---------------------------
+
+# Main
+
 if __name__ == "__main__":
     set_seed(42)
 
@@ -121,7 +121,7 @@ if __name__ == "__main__":
         freeze_backbone=True
     ).to(device)
 
-    # Loss & Optimizer (classifier only)
+    # Loss & Optimizer
     criterion = nn.CrossEntropyLoss()
     optimizer = Adam(
         filter(lambda p: p.requires_grad, model.parameters()),
@@ -131,7 +131,7 @@ if __name__ == "__main__":
     # DataLoaders
     train_loader, val_loader, _ = get_dataloaders(
         batch_size=16,      # increase to 32 if GPU allows
-        num_workers=2       # safe on Windows (guarded by __main__)
+        num_workers=2
     )
 
     NUM_EPOCHS = config.NUM_EPOCHS
@@ -142,9 +142,9 @@ if __name__ == "__main__":
 
     best_val_acc = 0.0
 
-    # ---------------------------
+
     # Training Loop
-    # ---------------------------
+
     for epoch in range(NUM_EPOCHS):
         print(f"\nEpoch [{epoch+1}/{NUM_EPOCHS}]")
 
@@ -179,9 +179,9 @@ if __name__ == "__main__":
 
         torch.cuda.empty_cache()
 
-    # ---------------------------
+
     # Save metrics + plots
-    # ---------------------------
+
     metrics_df = pd.DataFrame({
         "epoch": range(1, NUM_EPOCHS + 1),
         "train_loss": train_losses,

@@ -2,7 +2,6 @@ import os
 import pandas as pd
 from PIL import Image
 from torch.utils.data import Dataset
-from image_transforms import get_train_transforms
 
 
 class StemCellDataset(Dataset):

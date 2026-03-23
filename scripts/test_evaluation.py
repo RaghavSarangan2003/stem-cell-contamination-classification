@@ -17,9 +17,9 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print("Using device:", device)
 
-    # ---------------------------
+
     # Load Model
-    # ---------------------------
+
     model = build_efficientnet_b0(
         num_classes=3,
         freeze_backbone=True
@@ -29,9 +29,9 @@ if __name__ == "__main__":
     model.load_state_dict(checkpoint["model_state_dict"])
     model.eval()
 
-    # ---------------------------
+
     # Load Test Data
-    # ---------------------------
+
     _, _, test_loader = get_dataloaders(
         batch_size=16,
         num_workers=2
@@ -40,9 +40,9 @@ if __name__ == "__main__":
     all_preds = []
     all_labels = []
 
-    # ---------------------------
+
     # Inference
-    # ---------------------------
+
     with torch.no_grad():
         for images, labels in test_loader:
             images = images.to(device)
@@ -57,9 +57,9 @@ if __name__ == "__main__":
     all_preds = np.array(all_preds)
     all_labels = np.array(all_labels)
 
-    # ---------------------------
+
     # Metrics
-    # ---------------------------
+
     acc = accuracy_score(all_labels, all_preds)
     print(f"\nTest Accuracy: {acc:.4f}")
 
@@ -75,9 +75,9 @@ if __name__ == "__main__":
         )
     )
 
-    # ---------------------------
+
     # Confusion Matrix
-    # ---------------------------
+
     cm = confusion_matrix(all_labels, all_preds)
 
     plt.figure(figsize=(6, 5))

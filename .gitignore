@@ -30,3 +30,6 @@ dataset/
 
 # logs
 *.log
+
+notes_for_me.txt
+.gitignore
